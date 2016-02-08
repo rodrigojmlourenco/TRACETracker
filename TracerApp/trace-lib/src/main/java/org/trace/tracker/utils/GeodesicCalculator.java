@@ -3,7 +3,7 @@ package org.trace.tracker.utils;
 import android.location.Location;
 import android.os.Bundle;
 
-import org.trace.tracker.location.modules.WifiModule;
+import org.trace.tracker.modules.location.WifiModule;
 
 import java.util.ArrayList;
 

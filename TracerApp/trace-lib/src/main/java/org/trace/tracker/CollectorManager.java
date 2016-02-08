@@ -12,17 +12,17 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.trace.tracker.activity.ActivityDetector;
-import org.trace.tracker.location.fraud.LocationValidator;
-import org.trace.tracker.location.modules.BLEModule;
-import org.trace.tracker.location.modules.DRModule;
-import org.trace.tracker.location.modules.FusedLocationModule;
-import org.trace.tracker.location.modules.GPSModule;
-import org.trace.tracker.location.modules.NFCModule;
-import org.trace.tracker.location.modules.NetworkModule;
-import org.trace.tracker.location.modules.QRCodeModule;
-import org.trace.tracker.location.modules.WifiModule;
-import org.trace.tracker.power.PowerGauge;
+import org.trace.tracker.modules.activity.ActivityDetector;
+import org.trace.tracker.modules.fraud.LocationValidator;
+import org.trace.tracker.modules.location.BLEModule;
+import org.trace.tracker.modules.location.DRModule;
+import org.trace.tracker.modules.location.FusedLocationModule;
+import org.trace.tracker.modules.location.GPSModule;
+import org.trace.tracker.modules.location.NFCModule;
+import org.trace.tracker.modules.location.NetworkModule;
+import org.trace.tracker.modules.location.QRCodeModule;
+import org.trace.tracker.modules.location.WifiModule;
+import org.trace.tracker.modules.power.PowerGauge;
 import org.trace.tracker.utils.FileWriter;
 import org.trace.tracker.utils.GeodesicCalculator;
 
@@ -70,7 +70,8 @@ public class CollectorManager extends Service{
     public CollectorManager(){
         //initialize resgisteredApps table, and the profile receiver
         if(activeModules == null)
-            activeModules = new HashMap<>();
+            activeModules = new HashMap<>
+                    ();
 
         if(registeredApps == null)
             registeredApps = new HashMap<String, Profile>();
@@ -121,7 +122,7 @@ public class CollectorManager extends Service{
         if(nfcModule == null)
             nfcModule = new NFCModule(this);
         else
-            nfcModule.setNewContext(this);
+            nfcModule.setContext(this);
 
         if(qrModule == null)
             qrModule = new QRCodeModule(this);
